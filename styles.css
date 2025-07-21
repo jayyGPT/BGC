@@ -1,4 +1,4 @@
-/* Smooth transitions */
+/* Smooth transitions for all links */
 a {
   transition: all 0.3s ease;
 }
@@ -18,7 +18,40 @@ h1, h2, h3, h4 {
   padding: 6rem 1.5rem;
 }
 
-/* Text colors */
+#about h3 span {
+  border-bottom: 4px solid #FFD700; /* Accent line */
+  padding-bottom: 0.25rem;
+}
+
+#about p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.125rem;
+}
+
+#about {
+  margin-top: -12rem;   /* Pulls it up more */
+  padding-top: 4rem;    /* Optional: reduces blank above content */
+}
+
+#about::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('https://www.transparenttextures.com/patterns/black-paper.png');
+  opacity: 1;
+  z-index: 0;
+}
+
+#about > div {
+  position: relative;
+  z-index: 10;
+}
+
+#companies {
+  background: linear-gradient(135deg, #111111, #1a1a1a, #333333);
+}
+
 .text-dark {
   color: #111111;
 }
@@ -27,27 +60,55 @@ h1, h2, h3, h4 {
   background-color: #f9f9f9;
 }
 
-/* Responsive heading */
 h2 {
   font-size: clamp(2.5rem, 6vw, 4rem);
 }
 
-/* Card design */
-.card {
+
+
+
+
+
+
+#companies {
+  background: linear-gradient(135deg, #111111, #1a1a1a, #333333);
+}
+
+.company-panel {
   border-radius: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: #1f1f1f;
+  border: 1px solid #333;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   padding: 2rem;
-  background-color: #ffffff;
-  color: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.company-panel:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.1); /* lighter yellow shadow */
 }
 
-/* Modern nav links */
+.company-button {
+  display: inline-block;
+  background: transparent;
+  color: #FFD700;
+  border: 1px solid #FFD700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.company-button:hover {
+  background: #FFD700;
+  color: #000;
+}
+
+
 .nav-link {
   position: relative;
   padding-bottom: 4px;
@@ -60,7 +121,7 @@ h2 {
   height: 2px;
   left: 0;
   bottom: 0;
-  background-color: #FFD700; /* Accent color */
+  background-color: #FFD700;
   transition: width 0.3s ease;
 }
 
@@ -72,7 +133,6 @@ h2 {
   color: #FFD700;
 }
 
-/* Improved CTA Button */
 .btn-primary {
   display: inline-block;
   background-color: #FFD700;
@@ -81,7 +141,7 @@ h2 {
   border-radius: 9999px;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn-primary:hover {
@@ -90,15 +150,22 @@ h2 {
   background-color: #ffcc00;
 }
 
-/* Smooth scrolling */
+.grow-cta {
+  display: inline-block;
+  transform-origin: center center;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Contact buttons */
+.wave-divider {
+  line-height: 0;
+}
+
 .contact-btn {
   display: inline-block;
-  background-color: #1f1f1f; /* Dark tone for subtle buttons */
+  background-color: #1f1f1f;
   color: #f9f9f9;
   border: 1px solid #333;
   padding: 0.75rem 1.5rem;
@@ -108,7 +175,27 @@ html {
 }
 
 .contact-btn:hover {
-  background-color: #FFD700; /* Accent gold on hover */
+  background-color: #FFD700;
   color: #000;
   transform: translateY(-2px);
+}
+
+/* Section headings with permanent accent underline */
+.section-heading {
+  display: inline-block;
+  position: relative;
+  font-size: 1.875rem; /* text-3xl equivalent */
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 1rem;
+}
+
+.section-heading::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100%;  /* Always visible now */
+  height: 3px;
+  background-color: #FFD700; /* Accent color */
+  transform: translateX(-50%);
 }
