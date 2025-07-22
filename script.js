@@ -15,19 +15,24 @@ window.addEventListener("scroll", () => {
 
 const companies = [
   {
-    name: "Tech Division",
-    desc: "Leading in digital transformation, AI, and SaaS innovation.",
-    link: "https://techdivision.example.com",
+    name: "Software Development",
+    desc: "Complete technical solutions — we build websites, apps, and systems for automation and ease.",
+    points: [
+      "Custom websites, mobile apps, and systems",
+      "Focus on automation and operational efficiency",
+      "End-to-end design, development, and support"
+    ],
+    link: "https://yourdomain.com/software-development",
   },
   {
-    name: "Infra & Energy",
-    desc: "Driving growth in sustainable infrastructure and energy sectors.",
-    link: "https://infraenergy.example.com",
-  },
-  {
-    name: "Finance & Advisory",
-    desc: "Smart investment solutions and strategic consulting for tomorrow.",
-    link: "https://financeadvisory.example.com",
+    name: "Real Estate",
+    desc: "Trusted partner for buying, selling, and clearing legal issues for land and properties.",
+    points: [
+      "Buy, sell, and manage land or properties",
+      "Clear legal paperwork and verify titles",
+      "Transparent, smooth transactions"
+    ],
+    link: "https://yourdomain.com/real-estate",
   },
 ];
 
@@ -39,8 +44,15 @@ companies.forEach((item, index) => {
   panel.setAttribute("data-aos-delay", index * 100);
   panel.innerHTML = `
     <h4 class="text-xl font-heading mb-2">${item.name}</h4>
-    <p class="mb-4">${item.desc}</p>
+    <p class="mb-2">${item.desc}</p>
+    <ul>${item.points.map(p => `<li>${p}</li>`).join('')}</ul>
     <a href="${item.link}" target="_blank" class="company-button">Visit Site →</a>
   `;
   container.appendChild(panel);
 });
+
+// Add Coming Soon Card
+const comingSoon = document.createElement("div");
+comingSoon.className = "company-panel coming-soon";
+comingSoon.innerHTML = `<span>Exciting new divisions launching soon…</span>`;
+container.appendChild(comingSoon);

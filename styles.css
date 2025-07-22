@@ -13,27 +13,50 @@ h1, h2, h3, h4 {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Section spacing */
 .section {
   padding: 6rem 1.5rem;
 }
 
-#about h3 span {
-  border-bottom: 4px solid #FFD700; /* Accent line */
-  padding-bottom: 0.25rem;
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #000;
 }
 
-#about p {
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.125rem;
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(1, 0, 90, 0.626), transparent 75%);
+  animation: heroPulse 8s ease-in-out infinite;
+  z-index: 0;
 }
 
-#about {
-  margin-top: -12rem;   /* Pulls it up more */
-  padding-top: 4rem;    /* Optional: reduces blank above content */
+@keyframes heroPulse {
+  0% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.1); opacity: 0.6; }
+  100% { transform: scale(1); opacity: 0.4; }
 }
 
+.hero > div,
+.scroll-arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.scroll-arrow {
+  position: absolute;
+  bottom: 2rem; /* place higher than bottom-0 */
+  transform: translateY(20px);
+}
+
+.scroll-arrow svg {
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
+}
+
+
+
+/* ABOUT BACKGROUND TEXTURE */
 #about::before {
   content: "";
   position: absolute;
@@ -47,31 +70,11 @@ h1, h2, h3, h4 {
   position: relative;
   z-index: 10;
 }
-
+/* Companies Section */
 #companies {
-  background: linear-gradient(135deg, #111111, #1a1a1a, #333333);
-}
-
-.text-dark {
-  color: #111111;
-}
-
-.bg-light {
-  background-color: #f9f9f9;
-}
-
-h2 {
-  font-size: clamp(2.5rem, 6vw, 4rem);
-}
-
-
-
-
-
-
-
-#companies {
-  background: linear-gradient(135deg, #111111, #1a1a1a, #333333);
+  background: linear-gradient(135deg, #0a0a0a, #111827, #1f2937);
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .company-panel {
@@ -82,13 +85,30 @@ h2 {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  justify-content: flex-start;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .company-panel:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.1); /* lighter yellow shadow */
+  box-shadow: 0 12px 40px rgba(255, 215, 0, 0.1);
+}
+
+.company-panel h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFD700;
+}
+
+.company-panel p {
+  color: #ccc;
+}
+
+.company-panel ul {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+  text-align: left;
+  list-style-type: disc;
 }
 
 .company-button {
@@ -108,7 +128,63 @@ h2 {
   color: #000;
 }
 
+/* COMING SOON CARD */
+.company-panel.coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  padding: 3rem 1rem;
+  color: #FFD700;
+  font-size: 1.1rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
 
+.company-panel.coming-soon::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 215, 0, 0.05) 0%, transparent 70%);
+  z-index: 0;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+.company-panel.coming-soon span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+
+
+/* SCROLL ARROW */
+.scroll-arrow svg {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: #FFD700;
+  transition: transform 0.3s ease;
+}
+
+.scroll-arrow:hover svg {
+  transform: translateY(5px);
+}
+
+
+/* Nav & other styles same as before */
 .nav-link {
   position: relative;
   padding-bottom: 4px;
@@ -164,27 +240,45 @@ html {
 }
 
 .contact-btn {
-  display: inline-block;
-  background-color: #1f1f1f;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #1f1f1f;
+  border: 1px solid #FFD700;
   color: #f9f9f9;
-  border: 1px solid #333;
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 1.5rem;
   border-radius: 9999px;
   font-weight: 500;
-  transition: background 0.3s, transform 0.3s;
+  text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .contact-btn:hover {
-  background-color: #FFD700;
+  background: #FFD700;
   color: #000;
-  transform: translateY(-2px);
 }
 
-/* Section headings with permanent accent underline */
+.contact-btn .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  stroke: currentColor;
+}
+
+#contact {
+  position: relative;
+  background: #111;
+}
+
+
+#contact::before {
+  display: none; /* fallback if needed */
+}
+
 .section-heading {
   display: inline-block;
   position: relative;
-  font-size: 1.875rem; /* text-3xl equivalent */
+  font-size: 1.875rem;
   font-family: 'Poppins', sans-serif;
   margin-bottom: 1rem;
 }
@@ -194,8 +288,8 @@ html {
   position: absolute;
   bottom: 0;
   left: 50%;
-  width: 100%;  /* Always visible now */
+  width: 100%;
   height: 3px;
-  background-color: #FFD700; /* Accent color */
+  background-color: #FFD700;
   transform: translateX(-50%);
 }
